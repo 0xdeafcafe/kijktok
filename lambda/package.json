@@ -1,0 +1,23 @@
+{
+	"name": "template",
+	"version": "1.0.0",
+	"type": "module",
+	"main": "dist/handler.js",
+	"scripts": {
+		"prepackage": "yarn build",
+		"package": "zip -r app.zip .",
+		"build": "tsc",
+		"start": "node dist/handler.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@types/aws-lambda": "^8.10.19",
+		"@types/node": "^11.9.3",
+		"typescript": "^3.3.3"
+	},
+	"dependencies": {
+		
+	}
+}

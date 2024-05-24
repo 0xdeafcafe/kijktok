@@ -1,0 +1,13 @@
+{
+  "name": "kijktok",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "serve": "^14.2.3"
+  },
+  "scripts": {
+    "start": "serve"
+  }
+}

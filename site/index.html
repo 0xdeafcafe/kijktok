@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Kijk-Tok</title>
+	<style>
+		html, body {
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+
+		.hidden {
+			display: none;
+		}
+
+		#watch {
+			background: #1b1b1b;
+			width: 100%;
+			height: 100%;
+		}
+		#watch > video {
+			display: block;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<div id="lookup" class="hidden"></div>
+	<div id="watch" class="hidden">
+		<video controls autoplay></video>
+	</div>
+<script type="module" type="text/javascript">
+	await main();
+
+	async function main() {
+		const api = 'https://yrio5q0b1k.execute-api.eu-west-3.amazonaws.com/api';
+		const url = window.location.hash.substr(1);
+
+		if (!url) {
+			document.getElementById('lookup').classList.remove('hidden');
+
+			return;
+		}
+
+		const query = new URLSearchParams({ url });
+
+		const response = await fetch(`${api}?${query.toString()}`, {
+			method: 'GET',
+		});
+
+		const responseBody = await response.json();
+		const videoUrl = responseBody.videoUrl;
+		const video = document.querySelector('video');
+
+		document.getElementById('watch').classList.remove('hidden');
+
+		video.src = videoUrl;
+		video.play();
+	}
+</script>
+</body>
+</html>
